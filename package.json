@@ -1,19 +1,38 @@
 {
-  "name": "api-routes-apollo-server-and-client",
+  "name": "my-app",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "db:dev:migrate:create": "cross-env NODE_ENV=development knex migrate:make",
+    "db:dev:migrate": "cross-env NODE_ENV=development knex migrate:latest",
+    "db:dev:seed:create": "cross-env NODE_ENV=development knex seed:make",
+    "db:dev:seed": "cross-env NODE_ENV=development knex seed:run",
+    "db:prod:migrate:create": "cross-env NODE_ENV=production knex migrate:make"
   },
   "dependencies": {
     "@apollo/client": "^3.0.2",
+    "@chakra-ui/core": "^0.8.0",
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
     "apollo-server-micro": "^2.14.2",
+    "cross-env": "^7.0.2",
+    "emotion-theming": "^10.0.27",
     "graphql": "^14.0.2",
+    "graphql-date": "^1.0.3",
+    "graphql-type-json": "^0.3.2",
+    "knex": "^0.21.5",
+    "knex-migrate": "^1.7.4",
+    "lodash": "^4.17.20",
     "next": "latest",
+    "pg": "^8.3.3",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-icons": "^3.11.0",
+    "react-router": "^5.2.0",
+    "uuid": "^8.3.0"
   },
   "license": "MIT"
 }

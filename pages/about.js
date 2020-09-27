@@ -1,13 +1,15 @@
 import Link from 'next/link'
 
-export default function About() {
+export default function homeworkList() {
   return (
-    <div>
-      This is a static page goto{' '}
-      <Link href="/">
-        <a>dynamic</a>
-      </Link>{' '}
-      page.
-    </div>
+    <Box>
+      {/* <Heading as="h1" size="xl"> */}
+        <Flex>
+          <Flex>2020-09-25</Flex>
+          <Flex>K1A</Flex>
+          <Flex>作業A</Flex>
+        </Flex>
+      {/* </Heading> */}
+    </Box>
   )
 }
