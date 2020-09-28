@@ -1,5 +1,6 @@
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client'
+import React, { useState } from 'react'
 
 import {
   Text,
@@ -13,10 +14,12 @@ import {
 } from '@chakra-ui/core'
 
 import HomeworkDef from '../../components/homeworkDef'
-import HomeworkStu from './homeworkStu'
-import HomeworkTabList from './homeworkStu'
+import HomeworkTabList from './tabList'
+import StuCommit from './stuCommit'
 
 const Index = () => {
+  const [teaORstu, setTeaORstu] = useState(true) // 模擬學生或老師
+  const rolesChange = () => setTeaORstu(!teaORstu)
   return (
     <HomeworkDef>
       <Box p='10px 30px'>
@@ -29,37 +32,38 @@ const Index = () => {
             <Text>
             作業說明：
             </Text>
-            <Flex w='80%'>
+            <Box w='80%'>
               <Textarea
-                value='test'
-                placeholder='Here is a sample placeholder'
-                size='sm'
+                placeholder='test'
               />
-            </Flex>
+            </Box>
           </Flex>
           <Text textAlign={['left']} mt='20px'>作業對象：全班同學</Text>
-          <Flex mt='20px'>
-            <Box w='103%'>
-
-            <Text>
+          <Flex mt='20px' textAlign='start'>
+            <Box flexBasis='80px'>
+              <Text>
                 作業附件：
               </Text>
-          </Box>
-            <Box>
-            <Box textAlign='start' mb='20px'>
+            </Box>
+            <Box flex='1'>
+              <Box mb='20px'>
                 <Button variantColor='teal' variant='outline' h='24px' mr='10px'>查看附件</Button>
                 <span>3個附件</span>
               </Box>
-            <Grid templateColumns={{ sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={6}>
+              <Grid
+                flex='1'
+                templateColumns={{ sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
+                gap={6}
+              >
                 <Image src='https://bit.ly/sage-adebayo' />
                 <Image src='https://bit.ly/sage-adebayo' />
                 <Image src='https://bit.ly/sage-adebayo' />
                 <Image src='https://bit.ly/sage-adebayo' />
               </Grid>
-          </Box>
+            </Box>
           </Flex>
-          <Text textAlign={['left']} mt='20px'>查看作業：</Text>
-          <HomeworkTabList />
+          <Button onClick={rolesChange}>切換角色</Button>
+          {teaORstu ? <HomeworkTabList /> : <StuCommit />}
         </Box>
       </Box>
     </HomeworkDef>

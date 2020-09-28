@@ -11,23 +11,24 @@ import {
   Heading
 } from '@chakra-ui/core'
 import HomeworkDef from '../../components/homeworkDef'
-// import HomeworkList from './homeworkList'
+import HomeworkList from './homeworkList'
 
-// import { getHomework } from '../shared/graphql/queries/homework/getHomework'
+import { getHomework } from '../../shared/graphql/queries/homework/getHomework'
 
-// const HomeworkData = () => {
-//   const { loading, error, data } = useQuery(getHomework)
-//   if (loading) return null
-//   if (error) return null
-//   const abc = data.check_work.map((item, index) => (
-//     <Link key={index} href='./homework/homeworkContent/index'>
-//       <a>
-//         <HomeworkList data={item} />
-//       </a>
-//     </Link>
-//   ))
-//   return abc
-// }
+const HomeworkData = () => {
+  const { loading, error, data } = useQuery(getHomework)
+  if (loading) return null
+  if (error) return null
+  console.log(data)
+  const abc = data.check_work.map((item, index) => (
+    <Link key={index} href='./homework/homeworkContent/index'>
+      <a>
+        <HomeworkList data={item} />
+      </a>
+    </Link>
+  ))
+  return abc
+}
 
 const Index = () => {
   return (
@@ -71,7 +72,7 @@ const Index = () => {
         </Flex>
       </Flex>
       <Box w='70%' m='0 auto'>
-        {/* <HomeworkData /> */}
+        <HomeworkData />
       </Box>
     </HomeworkDef>
   )

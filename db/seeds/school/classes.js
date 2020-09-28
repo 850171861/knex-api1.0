@@ -1,11 +1,12 @@
 const _ = require('lodash')
+// const { v4: uuidv4 } = require('uuid')
 
 module.exports = async (knex, ctx) => {
   const classesData = []
-  for (let i = 0; i < 500; i++) {
-    console.log('classes waiting...', i)
+  for (let i = 0; i < 10; i++) {
+    // console.log('classes waiting...', i)
     classesData.push({
-      seq_id: i,
+      seq_id: 10 + i,
       name: `classes-${i + 1}`,
       english_name: `classes-${i + 1}`,
       slug: `classes-${i + 1}`,
@@ -16,7 +17,7 @@ module.exports = async (knex, ctx) => {
   // 新增
   const data = [...classesData]
   while (data.length) {
-    console.log('add classes data.length', data.length)
+    // console.log('add classes data.length', data.length)
     const classesArray = []
     for (let i = 0; i < 500; i++) {
       if (!data.length) break

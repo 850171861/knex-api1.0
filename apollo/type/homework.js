@@ -44,22 +44,27 @@ const Homework = gql`
   }
 
   input createHomeworkInput {
-      seq_id: Int,
+      seqId: Int,
       title: String,
-      created_at: String,
-      modified_at:String,
-      deleted_at: String,
-      end_at: String,
-      work_content: String,
+      createdAt: String,
+      modifiedAt:String,
+      deletedAt: String,
+      endAt: String,
+      workContent: String,
       fraction: String,
-      cls_id: String,
-      schooluser_id: String,
+      clsId: String,
+      schooluserId: String,
       files: JSON
   }
+   
+
+
+ 
 
   extend type Mutation {
-    # createHomework(input: createHomeworkInput!): [Homework]
-    createHomework(
+     createHomework(input: createHomeworkInput!): [Homework]
+   
+   """  createHomework(
       seq_id: Int,
       title: String,
       created_at: String,
@@ -67,25 +72,13 @@ const Homework = gql`
       deleted_at: String,
       end_at: String,
       work_content: String,
-      fraction: String,
+      fraction: Int,
       cls_id: String,
       schooluser_id: String,
       files: JSON
-    ) : [Homework]
+    ) : [Homework] """
 
-    update_Homework(
-      seq_id: Int,
-      title: String,
-      created_at: String,
-      modified_at:String,
-      deleted_at: String,
-      end_at: String,
-      work_content: String,
-      fraction: String,
-      cls_id: String,
-      schooluser_id: String,
-      files: JSON
-    ): [Homework]
+  
 
     delete_Homework(
       seq_id: Int
@@ -94,3 +87,16 @@ const Homework = gql`
 
 `
 module.exports = Homework
+/*  """  updateHomework(
+      seqId: Int,
+      title: String,
+      createdAt: String,
+      modifiedAt:String,
+      deletedAt: String,
+      endAt: String,
+      workContent: String,
+      fraction: String,
+      clsId: String,
+      schooluserId: String,
+      files: JSON
+    ): [Homework]   """ */
