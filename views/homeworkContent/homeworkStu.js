@@ -2,15 +2,15 @@
 import {
   Box,
   Avatar,
-  Flex
+  Flex,
+  Text
 } from "@chakra-ui/core";
-GrSearch
 import { GrSearch } from "react-icons/gr";
 export default function homeworkList() {
   return (
     <Flex>
       <Avatar name="kita" src="../pic/1.jpg"/>
-      <Box>
+      <Box textAlign="start">
         <Text>姓名：kita</Text>
         <Text>學號：01</Text>
         <Text>評分：未評分</Text>
