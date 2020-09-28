@@ -58,11 +58,10 @@ const Index = () => {
                 <Image src='https://bit.ly/sage-adebayo' />
                 <Image src='https://bit.ly/sage-adebayo' />
                 <Image src='https://bit.ly/sage-adebayo' />
-                <Image src='https://bit.ly/sage-adebayo' />
               </Grid>
             </Box>
           </Flex>
-          <Button onClick={rolesChange}>切換角色</Button>
+          <Button onClick={rolesChange}>切換角色暫時用於測試</Button>
           {teaORstu ? <HomeworkTabList /> : <StuCommit />}
         </Box>
       </Box>

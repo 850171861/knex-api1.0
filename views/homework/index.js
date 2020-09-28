@@ -34,15 +34,15 @@ const Index = () => {
   return (
     <HomeworkDef>
       <Flex>
-        <Flex flex='1'>
+        <Text flex='1'>
           <Button bg='white' color='#78A9F3' border='1px solid #78A9F3' rounded='100px' width='100%'>發佈作業</Button>
-        </Flex>
-        <Flex w='80%' justify='center'>
+        </Text>
+        <Text w='80%' justify='center'>
           <Text fontSize={['sm', 'md', 'lg', 'xl']}>作業列表</Text>
-        </Flex>
-        <Flex flex='1'>
+        </Text>
+        <Box flex='1'>
           <Button bg='white' color='#78A9F3' border='1px solid #78A9F3' rounded='100px' width='100%'>Stem</Button>
-        </Flex>
+        </Box>
       </Flex>
       <Flex w='85%' m='0 auto' mt='20px' borderBottom='1px solid #717171' pb='10px'>
         <Flex align='center'>

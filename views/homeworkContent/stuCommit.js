@@ -14,7 +14,7 @@ import { Formik } from 'formik'
 export default function homeworkList () {
   return (
     <Box>
-      <Flex AlignItems='center'>
+      <Flex alignItems='center'>
         <Text as='span' d='inline-block' bg='#C4C4C4' h='1px' flex='1' />
         <Heading as='h2' size='xl' flex='1'>提交作業</Heading>
         <Text as='span' d='inline-block' bg='#C4C4C4' h='1px' flex='1' />
@@ -56,7 +56,6 @@ export default function homeworkList () {
                   templateColumns={{ sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
                   gap={6}
                 >
-                  <Image src='https://bit.ly/sage-adebayo' />
                   <Image src='https://bit.ly/sage-adebayo' />
                   <Image src='https://bit.ly/sage-adebayo' />
                   <Image src='https://bit.ly/sage-adebayo' />
