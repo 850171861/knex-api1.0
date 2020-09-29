@@ -21,8 +21,8 @@ function time (val) {
 }
 
 const HomeworkList = ({ data }) => {
-  const startTime = time(new Date(parseInt(data.created_at)))
-  const endTime = time(new Date(parseInt(data.end_at)))
+  const startTime = time(new Date(data.issued_at))
+  const endTime = time(new Date(data.end_at))
 
   const [delTODO] = useMutation(delHomework)
 
@@ -34,9 +34,9 @@ const HomeworkList = ({ data }) => {
         </Flex>
       </Heading>
       <Flex justify='center' fontSize={['5px', '10px', '15px', '20px']} mt='10px'>
-        <Flex mr='10px' color='#727272'>全部人數：{data.sum}</Flex>
-        <Flex mr='10px' color='#0AAF25'>已提交人數：{data.and_submit}</Flex>
-        <Flex mr='10px' color='#C10A0A'>未提交人數：{data.no_submit}</Flex>
+        <Flex mr='10px' color='#727272'>全部人數：{data.count}</Flex>
+        <Flex mr='10px' color='#0AAF25'>已提交人數5</Flex>
+        <Flex mr='10px' color='#C10A0A'>未提交人數：4</Flex>
       </Flex>
       <Flex justify='center' fontSize={['5px', '10px', '15px', '20px']}>
         <Flex mr='10px' color='#727272'>發佈時間：{startTime}</Flex>

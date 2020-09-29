@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { useQuery } from '@apollo/client'
 
 import {
@@ -7,8 +7,7 @@ import {
   Box,
   Text,
   Radio,
-  RadioGroup,
-  Heading
+  RadioGroup
 } from '@chakra-ui/core'
 import HomeworkDef from '../../components/homeworkDef'
 import HomeworkList from './homeworkList'
@@ -20,12 +19,12 @@ const HomeworkData = () => {
   if (loading) return null
   if (error) return null
   console.log(data)
-  const abc = data.check_work.map((item, index) => (
-    <Link key={index} href='./homework/homeworkContent/index'>
+  const abc = data.homeworksByClsId.map((item, index) => (
+    <NextLink key={index} href='./homework/homeworkContent/index'>
       <a>
         <HomeworkList data={item} />
       </a>
-    </Link>
+    </NextLink>
   ))
   return abc
 }

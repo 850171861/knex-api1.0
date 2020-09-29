@@ -1,6 +1,9 @@
-// import { makeExecutableSchema } from 'graphql-tools'
-const { makeExecutableSchema } = require('graphql-tools')
+import { makeExecutableSchema } from 'graphql-tools'
 // import { typeDefs } from './type-defs'
+// ================ queries ================
+/* const homeworksByClsId = require('./queries/homework/homeworksByClsId') */
+const homeworksQuery = require('./queries/homework')
+
 // import { resolvers } from './resolvers'
 // import { Homework } from './type/homework'
 // import { userHomework } from './type/userHomework'
@@ -8,13 +11,10 @@ const { makeExecutableSchema } = require('graphql-tools')
 const merge = require('lodash/merge')
 const scalars = require('./type/scalars')
 // const resolvers = require('./resolvers')
-
 // ================ type ================
-const Homework = require('./type/homework')
-// ================ queries ================
-const homeworkQuery = require('./queries/homework')
+const Homework = require('./type/Homework')
 // ================ mutations ================
-const homeworkMutation = require('./mutations/homework')
+const createHomework = require('./mutations/homework')
 
 const Root = /* GraphQL */ `
   type Query {
@@ -32,21 +32,20 @@ const Root = /* GraphQL */ `
     subscription: Subscription
   }
 `
+
 const resolvers = merge(
   {},
   scalars.resolvers,
   // ===== queries =====
-  homeworkQuery,
+  homeworksQuery,
   // ===== mutaitions =====
-  homeworkMutation
+  createHomework
 )
 export const schema = makeExecutableSchema({
   typeDefs: [
     Root,
     scalars.typeDefs,
-    // Schooluser,
     Homework
-    // userHomework
   ],
   resolvers
 })

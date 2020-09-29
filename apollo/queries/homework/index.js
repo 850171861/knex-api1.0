@@ -1,9 +1,11 @@
-import homeWork from './lookHomework'
+import homeworksByClsId from './homeworksByClsId'
+import count from './count'
+
 module.exports = {
   Query: {
-    homeWork
+    homeworksByClsId
   },
-
   Homework: {
+    count
   }
 }

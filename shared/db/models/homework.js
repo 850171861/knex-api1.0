@@ -1,35 +1,55 @@
-// const omitBy = require('lodash/omitBy')
-// const isUndefined = require('lodash/isUndefined')
 const { db: knex } = require('../knex')
 
-// 查询作业表
-const getHomeWork = () => {
-  return knex('homework').select()
+// 根據ID判斷是學生還是老師
+const getHomeWorksByClsId = async (clsId) => {
+  // 查询班级人数
+  const result = await knex('schoolusers_classes as sc')
+    .joinRaw('left join  homework as h on h.cls_id = sc.cls_id')
+    .where('sc.cls_id', clsId)
+    .andWhere('sc.is_student', true)
+    .count()
+    .then((rows) => {
+      return rows.length ? parseInt(rows[0].count) : 0
+    })
+
+  return result
 }
-// 创建作业表
+// 当前班级作业
+const getHomeWorks = async (clsId) => {
+  return knex('homework').where({ cls_id: clsId })
+}
+
+const uuID = (prefix = '00000000') => () => {
+  const suffix = `${++i}`.padStart(12, '0')
+  return `${prefix}-0000-0000-0000-${suffix}`
+}
+const uuid = uuID('15000000')
+
+// 创建作业
 const createHomework = (args) => {
   const {
+    schoolId,
     title,
-    createAt,
-    modifiedAt,
-    deletedAt,
-    endAt,
-    workContent,
-    fraction,
-    schooluserId,
-    files
+    content,
+    issuedAt,
+    allowSubmitAt,
+    endAt
   } = args.input
   return knex('homework')
     .insert({
+      id: uuid(),
+      created_at: new Date(),
+      modified_at: '',
+      deleted_at: '',
+      school_id: schoolId,
+      cls_id: '',
+      course_id: '',
+      creator_id: '',
       title: title,
-      created_at: createAt,
-      modified_at: modifiedAt,
-      deleted_at: deletedAt,
-      end_at: endAt,
-      work_content: workContent,
-      fraction: fraction,
-      schooluser_id: schooluserId,
-      files
+      content: content,
+      issued_at: issuedAt,
+      allow_submit_at: allowSubmitAt,
+      end_at: endAt
     }).returning('*')
 }
 
@@ -60,32 +80,10 @@ const createHomework = (args) => {
     }).returning('*')
 } */
 
-// 老师查看自己发布作业列表
-const checkWork = (args) => {
-  const homework = knex('homework').where('fraction', '=', args.seq_id)
-  const schooluser_classes = knex('schooluser_classes').where('class_id', '=', args.class_id)
-  const user_homework = knex('user_homework').where('is_submit', '=', 'false').andWhere(builder => {
-    return builder.where('homework_id', '=', args.homework_id)
-  })
-  console.log(homework)
-  var arr = []
-  // 当前没提交人数
-  for (var i = 0; i < user_homework.length; i++) {
-    arr.push(user_homework[i].is_submit)
-  }
-  for (var i = 0; i < homework.length; i++) {
-    // 当前班的总人数
-    homework[i].sum = parseInt(schooluser_classes.length)
-    // 未提交人数
-    homework[i].no_submit = parseInt(arr.length)
-    // 已经提交人数
-    homework[i].and_submit = homework[i].sum - parseInt(arr.length)
-  }
-  return homework
-}
-
 module.exports = {
-  getHomeWork,
-  createHomework,
-  checkWork
+  getHomeWorksByClsId,
+  getHomeWorks,
+  createHomework
+  /*,
+  checkWork */
 }
