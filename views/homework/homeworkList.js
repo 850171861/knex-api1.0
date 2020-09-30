@@ -23,7 +23,6 @@ function time (val) {
 const HomeworkList = ({ data }) => {
   const startTime = time(new Date(data.issued_at))
   const endTime = time(new Date(data.end_at))
-
   const [delTODO] = useMutation(delHomework)
 
   return (
@@ -54,7 +53,9 @@ const HomeworkList = ({ data }) => {
           borderRadius='7px'
           onClick={(e) => {
             e.preventDefault()
-            delTODO({ variables: { seq_id: data.seq_id } })
+            console.log(333)
+            console.log(data.id)
+            delTODO({ variables: { id: data.id } })
           }}
         >
           <Icon name='delete' color='white' size='18px' />

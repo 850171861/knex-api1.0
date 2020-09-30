@@ -25,7 +25,8 @@ const createHomework = (args) => {
   const {
     schoolId,
     title,
-    content
+    content,
+    endAt
   } = args.input
 
   console.log(args, title)
@@ -40,10 +41,10 @@ const createHomework = (args) => {
       // course_id: '',
       // creator_id: '',
       title: title,
-      content: content
+      content: content,
       // issued_at: issuedAt,
       // allow_submit_at: allowSubmitAt,
-      // end_at: end_at
+      end_at: endAt
     })
     .returning('*')
 }
