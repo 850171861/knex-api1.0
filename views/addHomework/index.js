@@ -42,10 +42,10 @@ const SbumitWork = () => {
             //       content: values.content
             //     }
             //   })
-            // setTimeout(() => {
+            setTimeout(() => {
             // 取消button的提交的UI
-            //   actions.setSubmitting(false)
-            // }, 1000)
+              actions.setSubmitting(false)
+            }, 1000)
           }}
         >
           {props => (
