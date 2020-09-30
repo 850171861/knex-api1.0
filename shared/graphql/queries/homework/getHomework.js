@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 export const getHomework = gql`
   query getHomeworkQuery {
-    homeworksByClsId(clsId:"40000000-0000-0000-0000-000000000093"){
+    homeworksByClsId(clsId:"40000000-0000-0000-0000-000000000063"){
       id
       # seq_id
       # created_at

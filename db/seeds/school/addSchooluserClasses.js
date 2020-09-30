@@ -1,68 +1,56 @@
 const _ = require('lodash')
-const { generateCDSJ1SchooluserClasses } = require('../data/cdsj1/cdsj1SchooluserClasses')
-const { generateCDSJ6SchooluserClasses } = require('../data/cdsj6/cdsj6SchooluserClasses')
-const { generateFatimaSchooluserClasses } = require('../data/fatima/fatimaSchooluserClasses')
-const { generateMadalenaSchooluserClasses } = require('../data/madalena/madalenaSchooluserClasses')
-const { generateRegionSchooluserClasses } = require('../data/region/regionSchooluserClasses')
-let i = 0
+
+let count = 0
+// uuid
 const generateUUID = (prefix = '00000000') => () => {
-  const suffix = `${++i}`.padStart(12, '0')
+  const suffix = `${++count}`.padStart(12, '0')
   return `${prefix}-0000-0000-0000-${suffix}`
 }
-const uuid = generateUUID('60000000')
+const uuid = generateUUID('11000000')
+
+// 用户id
+const userID = (prefix = '00000000') => () => {
+  const suffix = `${++count}`.padStart(12, '0')
+  return `${prefix}-0000-0000-0000-${suffix}`
+}
+const user = userID('17000000')
+
+// 班级ID
+/* const clsUUID = (prefix = '00000000') => () => {
+  const suffix = `${++count}`.padStart(12, '0')
+  return `${prefix}-0000-0000-0000-${suffix}`
+}
+const clsuuid = clsUUID('40000000') */
 
 module.exports = async function (knex, ctx) {
   // 建立資料
   const schooluserClasses = []
-
-  // 聖若瑟教區中學第一校的班級成員
-  schooluserClasses.push(
-    ...generateCDSJ1SchooluserClasses(uuid, ctx)
-  )
-
-  // 聖若瑟教區中學第六校的班級成員
-  schooluserClasses.push(
-    ...generateCDSJ6SchooluserClasses(uuid, ctx)
-  )
-
-  // 化地瑪聖母女子學校的班級成員
-  schooluserClasses.push(
-    ...generateFatimaSchooluserClasses(uuid, ctx)
-  )
-
-  // 聖瑪大肋納學校的班級成員
-  schooluserClasses.push(
-    ...generateMadalenaSchooluserClasses(uuid, ctx)
-  )
-
-  // 地域中學的班級成員
-  schooluserClasses.push(
-    ...generateRegionSchooluserClasses(uuid, ctx)
-  )
-
-  // 資料庫操作
-  const data = [...schooluserClasses]
-  while (data.length) {
-    console.log('add schooluser classes data.length', data.length)
-
-    const dataSplice = data.splice(0, 500)
-    await knex('schoolusers_classes').insert([...dataSplice])
+  for (var i = 0; i < 50; i++) {
+    schooluserClasses.push({
+      id: uuid(),
+      created_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
+      modified_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
+      deleted_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
+      cls_id: '40000000-0000-0000-0000-000000000003',
+      schooluser_id: user(),
+      is_student: false,
+      is_teacher: false
+    })
   }
 
+  // 資料庫操作
+  await knex('schooluser_classes').insert([
+    ...schooluserClasses
+  ])
+
   // 讀取資料
-  const docs = [...schooluserClasses]
-
-  // await knex('schoolusers_classes').insert([
-  //   ...schooluserClasses
-  // ])
-
-  // const docs = await knex.select().table('schoolusers_classes')
+  const docs = await knex.select().table('schooluser_classes')
 
   // 返回
   ctx.schooluserClasses = {
     docs,
     obj: _.keyBy(docs, (o) => {
-      return o.id
+      return o.slug
     })
   }
 }

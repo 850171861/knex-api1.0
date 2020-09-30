@@ -41,10 +41,10 @@ const HomeworkDef = ({ children, ...props }) => {
           </Text>
         </Flex>
       </Flex>
-      <Box position='absolute' top='70px' right='15%'>
+      <Flex position='absolute' top='70px' right='15%'>
         <GrUserAdmin />
-        學校管理員
-      </Box>
+        <Text>學校管理員</Text>
+      </Flex>
       <Flex justify='center' mt='28px' mb='28px'>
         <Flex bg='white' justify='center' p='10px 20px' border='1px solid #C4C4C4'>
           <Text>

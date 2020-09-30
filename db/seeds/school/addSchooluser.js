@@ -1,51 +1,56 @@
 const _ = require('lodash')
 
 let count = 0
-// 作业id
-const homeworkID = (prefix = '00000000') => () => {
-  const suffix = `${++count}`.padStart(12, '0')
-  return `${prefix}-0000-0000-0000-${suffix}`
-}
-const homework = homeworkID('10000000')
-// 学生id
-const studentID = (prefix = '00000000') => () => {
-  const suffix = `${++count}`.padStart(12, '0')
-  return `${prefix}-0000-0000-0000-${suffix}`
-}
-const student = studentID('00000000')
-
 // uuid
-const uuID = (prefix = '00000000') => () => {
+const generateUUID = (prefix = '00000000') => () => {
   const suffix = `${++count}`.padStart(12, '0')
   return `${prefix}-0000-0000-0000-${suffix}`
 }
-const uuid = uuID('10000000')
+const uuid = generateUUID('11000000')
+
+// 用户id
+const userID = (prefix = '00000000') => () => {
+  const suffix = `${++count}`.padStart(12, '0')
+  return `${prefix}-0000-0000-0000-${suffix}`
+}
+const user = userID('17000000')
+
+// schoolid
+const schoolID = (prefix = '00000000') => () => {
+  const suffix = `${++count}`.padStart(12, '0')
+  return `${prefix}-0000-0000-0000-${suffix}`
+}
+const school = schoolID('11000000')
+
 module.exports = async function (knex, ctx) {
   // 建立資料
-  const homeworkScore = []
+  const schooluser = []
   for (var i = 0; i < 50; i++) {
-    homeworkScore.push({
+    schooluser.push({
       id: uuid(),
       created_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
       modified_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
       deleted_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
-      fraction: 100,
-      schooluser_id: student(),
-      homework_id: homework(),
-      remark: ''
+      name: '名字' + i,
+      email: '569652929@163.com',
+      user_id: user(),
+      school_id: school(),
+      is_student: true,
+      is_teacher: false,
+      Leave_school_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000)))
     })
   }
 
   // 資料庫操作
-  await knex('homework_score').insert([
-    ...homeworkScore
+  await knex('schooluser').insert([
+    ...schooluser
   ])
 
   // 讀取資料
-  const docs = await knex.select().table('homework_score')
+  const docs = await knex.select().table('schooluser')
 
   // 返回
-  ctx.homeworkScore = {
+  ctx.schooluser = {
     docs,
     obj: _.keyBy(docs, (o) => {
       return o.slug

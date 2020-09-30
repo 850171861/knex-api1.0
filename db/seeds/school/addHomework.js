@@ -30,10 +30,9 @@ const teacher = teacherID('00000000')
 module.exports = async function (knex, ctx) {
   // 建立資料
   const homework = []
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < 100; i++) {
     homework.push({
       id: uuid(),
-      seq_id: i,
       created_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
       modified_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
       deleted_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),

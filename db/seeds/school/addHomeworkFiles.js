@@ -34,7 +34,6 @@ module.exports = async function (knex, ctx) {
   for (var i = 0; i < 50; i++) {
     homeworkFiles.push({
       id: uuid(),
-      seq_id: i,
       created_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
       modified_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
       deleted_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),

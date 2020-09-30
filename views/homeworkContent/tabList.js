@@ -27,16 +27,16 @@ const HomeworkTabList = () => {
             <HomeworkStu />
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
+            <HomeworkStu />
           </TabPanel>
           <TabPanel>
-            <p>three!</p>
+            <HomeworkStu />
           </TabPanel>
           <TabPanel>
-            <p>four!</p>
+            <HomeworkStu />
           </TabPanel>
           <TabPanel>
-            <p>five!</p>
+            <HomeworkStu />
           </TabPanel>
         </TabPanels>
       </Tabs>

@@ -1,92 +1,25 @@
 const _ = require('lodash')
 
-let i = 0
-
+let count = 0
+// uuid
 const generateUUID = (prefix = '00000000') => () => {
-  const suffix = `${++i}`.padStart(12, '0')
+  const suffix = `${++count}`.padStart(12, '0')
   return `${prefix}-0000-0000-0000-${suffix}`
 }
-const uuid = generateUUID('10000000')
+const uuid = generateUUID('11000000')
 
 module.exports = async function (knex, ctx) {
   // 建立資料
-  const schools = [
-    {
+  const schools = []
+  for (var i = 0; i < 5; i++) {
+    schools.push({
       id: uuid(),
-      created_at: new Date(),
-      name: '聖若瑟教區中學第一校',
-      english_name: 'CDSJ1',
-      slug: 'school-cdsj1',
-      created_by: ctx.users.obj.comus.id,
-      collection_id: 'school-cdsj1-dev',
-      has_intelligence_module: false,
-      has_assessment_module: true,
-      // 健康模組
-      has_health_module: false,
-      // 通告模組
-      has_notification_module: false
-    },
-    {
-      id: uuid(),
-      created_at: new Date(),
-      name: '聖若瑟教區中學第六校',
-      english_name: 'CDSJ6',
-      slug: 'school-cdsj6',
-      created_by: ctx.users.obj.comus.id,
-      collection_id: 'school-cdsj6-dev',
-      has_intelligence_module: true,
-      has_assessment_module: false,
-      // 健康模組
-      has_health_module: false,
-      // 通告模組
-      has_notification_module: false
-    },
-    {
-      id: uuid(),
-      created_at: new Date(),
-      name: '化地瑪聖母女子學校',
-      english_name: 'FATIMA',
-      slug: 'school-fatima',
-      created_by: ctx.users.obj.comus.id,
-      collection_id: 'school-fatima-dev',
-      has_intelligence_module: true,
-      has_assessment_module: false,
-      // 健康模組
-      has_health_module: true,
-      // 通告模組
-      has_notification_module: false
-    },
-    {
-      id: uuid(),
-      created_at: new Date(),
-      name: '聖瑪大肋納學校',
-      english_name: 'MADALENA',
-      slug: 'school-madalena',
-      created_by: ctx.users.obj.comus.id,
-      collection_id: 'school-madalena-dev',
-      has_intelligence_module: true,
-      has_assessment_module: false,
-      // 健康模組
-      has_health_module: false,
-      // 通告模組
-      has_notification_module: true
-    },
-    {
-      id: uuid(),
-      created_at: new Date(),
-      name: '地域中學',
-      english_name: 'REGION',
-      slug: 'school-region',
-      created_by: ctx.users.obj.comus.id,
-      collection_id: 'school-region-dev',
-      has_intelligence_module: true,
-      has_assessment_module: true,
-      // 健康模組
-      has_health_module: true,
-      // 通告模組
-      has_notification_module: true
-    }
-  ]
+      created_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
+      modified_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
+      deleted_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
+      name: '名字' + i
+    })
+  }
 
   // 資料庫操作
   await knex('schools').insert([

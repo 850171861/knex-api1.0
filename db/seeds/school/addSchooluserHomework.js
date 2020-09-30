@@ -1,3 +1,4 @@
+
 const _ = require('lodash')
 
 let count = 0
@@ -25,7 +26,11 @@ const studentID = (prefix = '00000000') => () => {
   const suffix = `${++count}`.padStart(12, '0')
   return `${prefix}-0000-0000-0000-${suffix}`
 }
+
 const student = studentID('00000000')
+
+const aa = require('./addHomework')
+console.log(aa)
 
 module.exports = async function (knex, ctx) {
   // 建立資料
@@ -33,7 +38,6 @@ module.exports = async function (knex, ctx) {
   for (var i = 0; i < 50; i++) {
     schooluserHomework.push({
       id: uuid(),
-      seq_id: i,
       created_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
       modified_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),
       deleted_at: new Date(1567296000000 + parseInt(Math.random() * (1595390229956 - 1567296000000))),

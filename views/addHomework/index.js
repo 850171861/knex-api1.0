@@ -1,3 +1,6 @@
+// import gql from 'graphql-tag'
+import { useMutation } from '@apollo/client'
+
 import {
   Textarea,
   Button,
@@ -11,22 +14,14 @@ import {
   Flex,
   Text
 } from '@chakra-ui/core'
-// import NextLink from 'next/link'
 import HomeworkDef from '../../components/homeworkDef'
 import { Field, Form, Formik } from 'formik'
-import gql from 'graphql-tag'
-import { useMutation } from '@apollo/client'
+
+// import { createHomework } from '../../shared/graphql/mutations/homework/addHomework'
+
+// const [addHomeworkInfo] = useMutation(createHomework)
 
 const SbumitWork = () => {
-  const createdHomework = gql`
-      mutation createdWorkList($title: String,  $work_content: String, $fraction: String) {
-         create_Homework(title: $title, work_content: $work_content, fraction: $fraction) {
-            end_at
-         }
-      }
-   `
-  const [createdHW] = useMutation(createdHomework)
-
   return (
     <HomeworkDef>
       <FormLabel htmlFor='name' fontSize={32} fontWeight={600}>發佈作業</FormLabel>
@@ -40,19 +35,17 @@ const SbumitWork = () => {
           }}
           onSubmit={(values, actions) => {
             console.log(values)
-            // createdHW({
-            //   variables: {
-            //     title: values.title,
-            //     work_content: values.content,
-            //     fraction: values.fraction,
-            //     files: null
-            //   }
-            // })
-
-            setTimeout(() => {
-              // 取消button的提交的UI
-              actions.setSubmitting(false)
-            }, 1000)
+            // addHomeworkInfo(
+            //   {
+            //     variables: {
+            //       title: values.title,
+            //       content: values.content
+            //     }
+            //   })
+            // setTimeout(() => {
+            // 取消button的提交的UI
+            //   actions.setSubmitting(false)
+            // }, 1000)
           }}
         >
           {props => (

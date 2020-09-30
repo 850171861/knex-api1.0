@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: { user: '', database: 'school', password: '', filename: './db' },
+    connection: { user: '', database: 'test2', password: '', filename: './db' },
     seeds: {
       directory: './db/seeds'
     },
@@ -12,7 +12,7 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: 'school',
+      database: 'test2',
       user: '',
       password: ''
     },
